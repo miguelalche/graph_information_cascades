@@ -8,14 +8,12 @@ var RandomGraph = require("./randomgraph")
 // var graph = new LineGraph(numberOfNodes, urn)
 var filename = process.argv[2] || "./results.csv"
 var edgeChance = process.argv[3] || 0.7
-var noLogs = process.argv[4] || false
+var noLogs = process.argv[4] || 'false'
 var numberOfNodes = process.argv[5] || 50
-if(noLogs) console.log = function(){}
+if(noLogs == 'true') console.log = function(){}
 
 var urn = new Urn()
 
-
-console.log(filename)
 
 var graph = new RandomGraph(numberOfNodes, urn, edgeChance)
 

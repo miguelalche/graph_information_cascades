@@ -11,7 +11,7 @@ function RandomGraph(numberOfNodes, urn, edgeChance) {
     for (let i = 0; i < numberOfNodes; i++) {
         this._adjacencyMatrix.push([])
         for (let j = 0; j < numberOfNodes; j++) {
-            this._adjacencyMatrix[i].push(Math.random() > this._edgeChance)
+            this._adjacencyMatrix[i].push(Math.random() < this._edgeChance)
             if (i == j) this._adjacencyMatrix[i][i] = false;
         }
     }
