@@ -14,6 +14,10 @@ This project is an experiment of Information Cascades on Graphs according to Net
 Para ver la experimentacion, abrir la jupyter notebook llamada `Experimentacion`
 y correr los bloques de codigo con `shift + enter`
 
+To see the experimentation open the jupyter notebook `Experimentacion`
+and run the code blocks accordingly with `shift + enter`. 
+
+
 # Example Output 
 
 ```
