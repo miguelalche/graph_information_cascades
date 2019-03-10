@@ -10,6 +10,10 @@ This project is an experiment of Information Cascades on Graphs according to Net
 3) run `node index.js` on the command line
 
 
+# Experimentacion
+Para ver la experimentacion, abrir la jupyter notebook llamada `Experimentacion`
+y correr los bloques de codigo con `shift + enter`
+
 # Example Output 
 
 ```
