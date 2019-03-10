@@ -1,20 +1,21 @@
 var Vertex = require('./vertex')
 
-function RandomGraph(numberOfNodes, urn, connectivity) {
+function RandomGraph(numberOfNodes, urn, edgeChance) {
     this._vertex = []
-
+    this._edgeChance = edgeChance
     for (let i = 0; i < numberOfNodes; i++) {
         this.add(new Vertex(i, this, urn))
     }
+
     this._adjacencyMatrix = []
     for (let i = 0; i < numberOfNodes; i++) {
         this._adjacencyMatrix.push([])
         for (let j = 0; j < numberOfNodes; j++) {
-            this._adjacencyMatrix[i].push(Math.random() > connectivity)
+            this._adjacencyMatrix[i].push(Math.random() > this._edgeChance)
             if (i == j) this._adjacencyMatrix[i][i] = false;
         }
     }
-    this._type = "graph"
+    this._type = "random"
 }
 RandomGraph.prototype.getNeighbours = function (i) {
     var neighbours = []

@@ -4,12 +4,19 @@ var LineGraph = require("./linegraph")
 
 var RandomGraph = require("./randomgraph")
 
-var urn = new Urn()
-var numberOfNodes = 50;
 
 // var graph = new LineGraph(numberOfNodes, urn)
+var filename = process.argv[2] || "./results.csv"
+var edgeChance = process.argv[3] || 0.7
+var noLogs = process.argv[4] || false
+var numberOfNodes = process.argv[5] || 50
+if(noLogs) console.log = function(){}
 
-var edgeChance = 0.7
+var urn = new Urn()
+
+
+console.log(filename)
+
 var graph = new RandomGraph(numberOfNodes, urn, edgeChance)
 
 for (let i = 0; i < graph.numberOfNodes(); i++) {
@@ -19,7 +26,7 @@ for (let i = 0; i < graph.numberOfNodes(); i++) {
 }
 
 
-var statistics = new Statistics(graph);
+var statistics = new Statistics(graph,filename);
 
 
 statistics.summary()
