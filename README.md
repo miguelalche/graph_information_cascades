@@ -1,5 +1,8 @@
 Graph Information Cascades
 =============
+![Graph of information cascades](graph.png)
+In here strong blue and strong red are decisions take by the nodes. If the nodes are colored pink or lightblue, then it means what they decided (red or blue) was because of the effect of the crowd they saw.
+
 This project is an experiment of Information Cascades on Graphs according to Networks Crowds and Markets assignement at UBA by Esteban Feuerstein 2018 
 
 # Installation

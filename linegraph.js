@@ -20,5 +20,27 @@ LineGraph.prototype.numberOfNodes = function(){
     return this._vertex.length
 }
 
+LineGraph.prototype.serialize = function(){
+    var res = ''
+    res += this._vertex.map(v=>v._index).toString()
+    res += ';'
+    for (let i = 0; i < this.numberOfNodes(); i++) {
+        for (let j = 0; j < this.numberOfNodes(); j++) {
+            if(this._adjacencyMatrix[i][j]) res += '('+i+','+j+')'+'-'
+        }        
+    }
+    res = res.slice(0,res.length-1)
+    res += ";"
+    res += this._vertex.map(v=>{
+        var color = v.getDecision()
+        if(!v.opinionMatters()){
+            if (color=="blue") return 'lightblue';
+            return 'pink' 
+        }
+        return color
+    }).toString()
+
+    return res
+}
 
 module.exports = LineGraph;
