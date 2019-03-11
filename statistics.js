@@ -1,8 +1,9 @@
 const fs = require('fs')
 
-function Statistics(graph,filename){
+function Statistics(graph,filename, graphFileName){
     this._graph = graph
     this._filename = filename
+    this._graphFileName = graphFileName
 }
 
 Statistics.prototype.summary = function(){
@@ -43,6 +44,10 @@ Statistics.prototype.summary = function(){
     stringToWrite += numberOfVertexWhoseOpinionDidntMatter+";"+numberOfinfluencedVertex +"\n"
     
     stream.write(stringToWrite)
+    stream.end()
+
+    var stream = fs.createWriteStream(this._graphFileName)
+    stream.write(this._graph.serialize())
     stream.end()
 } 
 
