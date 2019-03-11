@@ -59,7 +59,7 @@ Vertex.prototype.getDecision = function (){
 
 Vertex.prototype.lookNeighborsDecision = function (){
     var decisions = {}
-    let neighbours = this._graph.getNeighbours(this._index);
+    let neighbours = this._graph.getNeighboursPointingTo(this._index);
     for (let i = 0; i < neighbours.length; i++) {
         let neighbour = neighbours[i];
         if(neighbour.hasDecided()){
