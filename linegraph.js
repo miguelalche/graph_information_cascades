@@ -25,9 +25,10 @@ LineGraph.prototype.serialize = function(){
     res += this._vertex.map(v=>v._index).toString()
     res += ';'
     for (let i = 0; i < this.numberOfNodes(); i++) {
-        for (let j = 0; j < this.numberOfNodes(); j++) {
-            if(this._adjacencyMatrix[i][j]) res += '('+i+','+j+')'+'-'
-        }        
+        var neighbours = this.getNeighbours(i)
+        neighbours.forEach(element => {
+            res += '('+i+','+element._index+')'+'-'
+        });
     }
     res = res.slice(0,res.length-1)
     res += ";"
