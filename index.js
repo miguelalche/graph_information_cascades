@@ -6,7 +6,7 @@ var RandomGraph = require("./randomgraph")
 
 
 var filename = process.argv[2] || "./results.csv"
-var edgeChance = process.argv[3] || 0.1
+var edgeChance = process.argv[3] || 0.3
 var noLogs = process.argv[4] || 'false'
 var numberOfNodes = process.argv[5] || 50
 var graphFileName = process.argv[6] || './graphInfo'
@@ -19,30 +19,11 @@ var urn = new Urn()
 // var graph = new LineGraph(numberOfNodes, urn)
 var graph = new RandomGraph(numberOfNodes, urn, edgeChance, explorationMode)
 
-// for (let i = 0; i < graph.numberOfNodes(); i++) {
-//     let vertex = graph.get(i);
-//     vertex.decide()
-//     console.log("Node",vertex._index,"decides: ", vertex.getDecision(),"\n")
-// }
-
 while (graph.traverse()) {
     let vertex = graph.getCurrentVertex();
     vertex.decide()
     console.log("Node", vertex._index, "decides: ", vertex.getDecision(), "\n")
 }
-
-let allNodesHaveDecided = true
-for (let i = 0; i < graph.numberOfNodes(); i++) {
-    const vertex = graph.get(i);
-    if (!vertex.hasDecided()) allNodesHaveDecided = false
-}
-
-
-// for (let i = 0; i < graph.numberOfNodes(); i++) {
-//     let vertex = graph.get(i);
-//     vertex.decide()
-//     console.log("Node",vertex._index,"decides: ", vertex.getDecision(),"\n")
-// }
 
 
 var statistics = new Statistics(graph, filename, graphFileName);
@@ -50,7 +31,14 @@ var statistics = new Statistics(graph, filename, graphFileName);
 
 statistics.summary()
 
-console.log(allNodesHaveDecided)
+
+// let allNodesHaveDecided = true
+// for (let i = 0; i < graph.numberOfNodes(); i++) {
+//     const vertex = graph.get(i);
+//     if (!vertex.hasDecided()) allNodesHaveDecided = false
+// }
+
+// console.log(allNodesHaveDecided)
 
 
 
