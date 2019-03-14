@@ -87,7 +87,12 @@ RandomGraph.prototype.traverse = function () {
             this._queue = this._queue.concat(this.getNeighboursPointingFrom(this._currentVertexIndex).map(v => v._index))
         } else {
             if (this._queue.length === 0) {
-                this._traverseState = false
+                if(this.allNodesHaveDecided()){
+                    this._traverseState = false
+                } else {
+                    console.log("queue was reset")
+                    this._queue.push(this.getUndecidedVertexIndex())
+                }
             } else {
                 console.log("BFS queue: ",this._queue)
                 this._currentVertexIndex = this._queue[0]
@@ -102,6 +107,27 @@ RandomGraph.prototype.traverse = function () {
     }
 
     return this._traverseState
+}
+
+RandomGraph.prototype.allNodesHaveDecided = function(){
+    let allNodesHaveDecided = true
+    for (let i = 0; i < this.numberOfNodes(); i++) {
+        const vertex = this.get(i);
+        if (!vertex.hasDecided()) {
+            allNodesHaveDecided = false
+            break;
+        }
+    }
+    return allNodesHaveDecided
+}
+RandomGraph.prototype.getUndecidedVertexIndex = function (){
+    for (let i = 0; i < this.numberOfNodes(); i++) {
+        const vertex = this.get(i);
+        if (!vertex.hasDecided()) {
+            return vertex._index
+        }
+    }
+    throw new Error("No vertex undecided")
 }
 
 RandomGraph.prototype.getCurrentVertex = function(){

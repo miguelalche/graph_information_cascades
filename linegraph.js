@@ -2,6 +2,7 @@ var Vertex = require('./vertex')
 
 function LineGraph(numberOfNodes,urn){
     this._vertex = []
+    this._explorationMode = 'linear'
     this._traverseState = false
     for (let i = 0; i < numberOfNodes; i++) {
         this.add(new Vertex(i,this,urn))

@@ -41,8 +41,10 @@ Statistics.prototype.summary = function(){
         stringToWrite += "line" +";"
     }
 
-    stringToWrite += numberOfVertexWhoseOpinionDidntMatter+";"+numberOfinfluencedVertex +"\n"
+    stringToWrite += numberOfVertexWhoseOpinionDidntMatter+";"+numberOfinfluencedVertex +";"
     
+    stringToWrite += this._graph._explorationMode  +"\n"
+
     stream.write(stringToWrite)
     stream.end()
 
