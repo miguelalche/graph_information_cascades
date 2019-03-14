@@ -2,12 +2,12 @@ var Vertex = require('./vertex')
 
 function LineGraph(numberOfNodes,urn){
     this._vertex = []
-
+    this._traverseState = false
     for (let i = 0; i < numberOfNodes; i++) {
         this.add(new Vertex(i,this,urn))
     }
 }
-LineGraph.prototype.getNeighbours = function (i){
+LineGraph.prototype.getNeighboursPointingTo = function (i){
     return this._vertex.slice(0,i)
 }
 LineGraph.prototype.add = function(v){
@@ -20,12 +20,27 @@ LineGraph.prototype.numberOfNodes = function(){
     return this._vertex.length
 }
 
+LineGraph.prototype.traverse = function(){
+    if(this._traverseState == false){
+        this._currentVertexIndex = 0
+        this._traverseState = true
+    } else {
+        this._currentVertexIndex++
+        if (this._currentVertexIndex >= this.numberOfNodes()) this._traverseState = false;
+    }   
+    return this._traverseState;
+}
+
+LineGraph.prototype.getCurrentVertex = function(){
+    return this._vertex[this._currentVertexIndex];
+}
+
 LineGraph.prototype.serialize = function(){
     var res = ''
     res += this._vertex.map(v=>v._index).toString()
     res += ';'
     for (let i = 0; i < this.numberOfNodes(); i++) {
-        var neighbours = this.getNeighbours(i)
+        var neighbours = this.getNeighboursPointingTo(i)
         neighbours.forEach(element => {
             res += '('+i+','+element._index+')'+'-'
         });
