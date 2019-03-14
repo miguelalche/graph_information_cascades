@@ -6,9 +6,9 @@ var RandomGraph = require("./randomgraph")
 
 
 var filename = process.argv[2] || "./results.csv"
-var edgeChance = process.argv[3] || 0.3
+var edgeChance = process.argv[3] || 0.001
 var noLogs = process.argv[4] || 'false'
-var numberOfNodes = process.argv[5] || 50
+var numberOfNodes = process.argv[5] || 6000
 var graphFileName = process.argv[6] || './graphInfo'
 var explorationMode = process.argv[7] || 'bfs'
 if (noLogs == 'true') console.log = function () { }
