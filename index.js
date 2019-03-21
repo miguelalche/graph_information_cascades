@@ -6,18 +6,23 @@ var RandomGraph = require("./randomgraph")
 
 
 var filename = process.argv[2] || "./results.csv"
-var edgeChance = process.argv[3] || 0.001
+var edgeChance = process.argv[3] || 0.2
 var noLogs = process.argv[4] || 'false'
-var numberOfNodes = process.argv[5] || 6000
+var numberOfNodes = process.argv[5] || 20
 var graphFileName = process.argv[6] || './graphInfo'
-var explorationMode = process.argv[7] || 'bfs'
+var graphType = process.argv[7] || 'network'
+var explorationMode = process.argv[8] || 'bfs'
 if (noLogs == 'true') console.log = function () { }
 
 var urn = new Urn()
 
-
-// var graph = new LineGraph(numberOfNodes, urn)
-var graph = new RandomGraph(numberOfNodes, urn, edgeChance, explorationMode)
+if(graphType == 'network'){
+    console.log("Using Network Graph")
+    var graph = new RandomGraph(numberOfNodes, urn, edgeChance, explorationMode)
+} else {
+    console.log("Using Line Graph")
+    var graph = new LineGraph(numberOfNodes, urn)
+}
 
 while (graph.traverse()) {
     let vertex = graph.getCurrentVertex();
