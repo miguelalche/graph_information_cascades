@@ -1,4 +1,4 @@
-Graph Information Cascades
+Information Cascades
 =============
 ![Graph of information cascades](graph.png)
 In here strong blue and strong red are decisions taken by the nodes. If the nodes are colored pink or lightblue, then it means what they decided (red or blue) was because of the effect of the crowd they saw.
